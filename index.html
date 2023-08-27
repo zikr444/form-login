@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Form Login</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form class="login-form" id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password:</label>
+        <div class="password-input">
+          <input type="password" id="password" name="password" required />
+          <button type="button" id="toggle-password" class="password-toggle">
+            <span class="icon" id="icon-eye">
+              <img
+                src="assets/eye-icon.svg"
+                alt="Show Password"
+                width="24"
+                height="24"
+              />
+            </span>
+          </button>
+        </div>
+
+        <input type="submit" value="Login" id="login-button" />
+      </form>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("login-form")
+        const loginButton = document.getElementById("login-button")
+        const passwordField = document.getElementById("password")
+        const togglePasswordButton = document.getElementById("toggle-password")
+
+        togglePasswordButton.addEventListener("click", function () {
+          if (passwordField.type === "password") {
+            passwordField.type = "text"
+            togglePasswordButton.textContent = "Hide Password"
+          } else {
+            passwordField.type = "password"
+            togglePasswordButton.textContent = ""
+            togglePasswordButton.innerHTML =
+              '<span class="icon" id="icon-eye"><img src="assets/eye-icon.svg" alt="Show Password" width="24" height="24"></span>'
+          }
+        })
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault()
+
+          const username = form.querySelector("#username").value
+          const password = form.querySelector("#password").value
+
+          if (username === "user" && password === "pace") {
+            window.location.href = "welcome.html"
+          } else {
+            alert("Login gagal. Silahkan coba kembali ")
+          }
+        })
+      })
+    </script>
+  </body>
+</html>
